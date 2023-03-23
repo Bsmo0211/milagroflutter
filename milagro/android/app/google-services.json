@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "824463735792",
+    "project_id": "agro-9c83b",
+    "storage_bucket": "agro-9c83b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824463735792:android:879ee23fcce28daeed3b35",
+        "android_client_info": {
+          "package_name": "com.aplicacion.milagro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824463735792-dqklm2q3ql0bj1guds20vqorprblcol7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ01c4pAtkzOvYi5Hp95vjTC1SQDsYs88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824463735792-dqklm2q3ql0bj1guds20vqorprblcol7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
