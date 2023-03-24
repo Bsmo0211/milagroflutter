@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:milagro/common/config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -127,7 +128,7 @@ class _LoginState extends State<Login> {
                       },
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.only(top: 15),
                       child: ElevatedButton.icon(
                         label: const Text(
                           'Iniciar Sesion ',
@@ -146,10 +147,55 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                         onPressed: () {
-                          UserManagement()
+                          AuthServices()
                               .signIn(usuarioCtrl.text, passCtrl.text);
                         },
                       ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 0),
+                      child: ElevatedButton.icon(
+                        label: const Text(
+                          'Iniciar Sesion con Google ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        icon: const Icon(
+                          Icons.g_mobiledata,
+                          color: Colors.black,
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll<Color>(
+                            Config.green,
+                          ),
+                        ),
+                        onPressed: () {
+                          AuthServices().singInWithGoogle();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: '¡Registrate!',
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 60, 174, 231),
+                        fontSize: 15,
+                        decoration: TextDecoration.underline,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () async {
+                          Navigator.popAndPushNamed(
+                            context,
+                            'registroUsuario',
+                          );
+                        },
                     ),
                   ],
                 ),

@@ -44,7 +44,7 @@ class DrawerPropio extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      UserManagement().signOut();
+                      AuthServices().signOut();
                     },
                   ),
                   const Divider(
