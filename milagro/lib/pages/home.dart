@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:milagro/common/config.dart';
 import 'package:milagro/items/drawer.dart';
+import 'package:milagro/services/auth_Services.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -29,7 +30,7 @@ class _HomeState extends State<Home> {
           const Padding(
             padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
             child: Text(
-              'Escoja a quien le gustaria hacerle la compra.',
+              '¿A que interfaz deseas ingresar?',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
@@ -39,7 +40,7 @@ class _HomeState extends State<Home> {
           Center(
             child: ElevatedButton.icon(
               label: const Text(
-                'Agricultor',
+                'Comprador',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -54,8 +55,8 @@ class _HomeState extends State<Home> {
                   Config.green,
                 ),
               ),
-              onPressed: () {
-                print('object');
+              onPressed: () async {
+                // await AuthServices().redireccion(context);
               },
             ),
           ),
