@@ -1,13 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:milagro/common/config.dart';
 import 'package:milagro/models/usuarios.dart';
 import 'package:milagro/services/auth_Services.dart';
 
-class DrawerComprador extends StatelessWidget {
+class DrawerVendedor extends StatelessWidget {
   UsuarioProvider? usuario;
-  DrawerComprador({
+  DrawerVendedor({
     super.key,
     required this.usuario,
   });
@@ -46,7 +44,28 @@ class DrawerComprador extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
+                  ListTile(
+                    leading: const Icon(
+                      Icons.add,
+                      size: 20,
+                      color: Colors.black,
+                    ),
+                    title: const Text(
+                      'Agregar Producto',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onTap: () {
+                      AuthServices().signOut();
+                    },
+                  ),
+                  const Divider(
+                    height: 1,
+                    color: Colors.grey,
+                  ),
                   ListTile(
                     leading: const Icon(
                       Icons.logout,
@@ -76,5 +95,6 @@ class DrawerComprador extends StatelessWidget {
         ),
       ),
     );
+    ;
   }
 }

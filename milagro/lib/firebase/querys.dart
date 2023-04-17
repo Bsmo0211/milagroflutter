@@ -5,15 +5,47 @@ import 'package:flutter/material.dart';
 class FireBaseQuery {
   final firebase = FirebaseFirestore.instance;
 
-  registroUsuarioTabla(String correo, String primerNombre, String segundoNombre,
-      String primerApellido, String segundoApellido, String rol) async {
+  registroUsuarioTabla(
+    String correo,
+    String primerNombre,
+    String segundoNombre,
+    String primerApellido,
+    String segundoApellido,
+    String rol,
+    String direccion,
+  ) async {
     await firebase.collection('usuarios').doc().set({
-      "Correo": correo,
-      "Primer Nombre": primerNombre,
-      "Segundo Nombre": segundoNombre,
-      "Primer Apellido": primerApellido,
-      "Segundo Apellido": segundoApellido,
-      "Rol": rol,
+      "correo": correo,
+      "primerNombre": primerNombre,
+      "segundoNombre": segundoNombre,
+      "primerApellido": primerApellido,
+      "segundoApellido": segundoApellido,
+      "rol": rol,
+      "direccion": direccion,
+    });
+  }
+
+  addProducto(
+    String nombreProducto,
+    int precio,
+    String categoria,
+    String descripcion,
+    DateTime fechaInicio,
+    DateTime fechaFinal,
+    String nombreVendedor,
+    String apellidoVendedor,
+    int cantidad,
+  ) async {
+    await firebase.collection('productos').doc().set({
+      "nombreProducto": nombreProducto,
+      "precio": precio,
+      "categoria": categoria,
+      "descripcion": descripcion,
+      "fechaInicio": fechaInicio,
+      "fechaFinal": fechaFinal,
+      "nombreVendedor": nombreVendedor,
+      "apellidoVendedor": apellidoVendedor,
+      "cantidad": cantidad
     });
   }
 }

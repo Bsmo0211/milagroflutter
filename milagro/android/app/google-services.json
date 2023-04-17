@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "824463735792-ailnclmosp1d034b5loppirm5dgrqn76.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aplicacion.milagro",
+            "certificate_hash": "c83106dbfe54feb74f75e68dbe45b5697c87d21c"
+          }
+        },
+        {
           "client_id": "824463735792-dqklm2q3ql0bj1guds20vqorprblcol7.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "824463735792-dqklm2q3ql0bj1guds20vqorprblcol7.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "824463735792-shf5m3ac7ukf5hpetfpuebi34fhi0q8g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.milagro"
+              }
             }
           ]
         }

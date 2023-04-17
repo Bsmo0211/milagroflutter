@@ -14,7 +14,6 @@ class Registro extends StatefulWidget {
 class _RegistroState extends State<Registro> {
   bool _showPassword = true;
   List<String> dropdownRoles = [
-    Constants.administrador,
     Constants.agricultor,
     Constants.centroAcopio,
     Constants.comprador
@@ -28,6 +27,7 @@ class _RegistroState extends State<Registro> {
   TextEditingController primerApellidoCtrl = TextEditingController();
   TextEditingController segundoApellidoCtrl = TextEditingController();
   TextEditingController passCtrl = TextEditingController();
+  TextEditingController direccionCtrl = TextEditingController();
 
   bool validate() {
     final form = formKey1.currentState;
@@ -250,6 +250,41 @@ class _RegistroState extends State<Registro> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 15),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 1.5,
+                                    color: Config.green,
+                                  ),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 5.0,
+                                  horizontal: 15.0,
+                                ),
+                                labelText: 'Dirección',
+                                border: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 3,
+                                  ),
+                                ),
+                                icon: const Icon(
+                                  Icons.gps_fixed,
+                                  size: 25,
+                                ),
+                              ),
+                              controller: direccionCtrl,
+                              validator: (direccionCtrl) {
+                                if (direccionCtrl == null ||
+                                    direccionCtrl.isEmpty) {
+                                  return 'El campo es obligatorio';
+                                } else {}
+                                return null;
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
                             child: SizedBox(
                               height: 63,
                               child: DropdownButtonFormField<String>(
@@ -382,6 +417,7 @@ class _RegistroState extends State<Registro> {
                     primerApellidoCtrl.text,
                     segundoApellidoCtrl.text,
                     _itemSeleccionadoRoles!,
+                    direccionCtrl.text,
                   );
                   Navigator.pushNamedAndRemoveUntil(
                     context,
