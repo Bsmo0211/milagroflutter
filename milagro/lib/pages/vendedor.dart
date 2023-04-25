@@ -14,14 +14,14 @@ class Vendedor extends StatefulWidget {
 class _VendedorState extends State<Vendedor> {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UsuarioProvider>(context);
+    UsuarioProvider user = Provider.of<UsuarioProvider>(context);
     return Scaffold(
       drawer: DrawerVendedor(usuario: user),
       appBar: AppBar(
-        title: Text('Bienvenido Vendedor! :)'),
+        title: const Text('Bienvenido Vendedor! :)'),
       ),
       body: Column(
-        children: [
+        children: const [
           Center(
             child: Padding(
               padding: EdgeInsets.only(

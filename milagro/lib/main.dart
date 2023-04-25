@@ -1,12 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:milagro/common/config.dart';
+import 'package:milagro/models/ordenTemp.dart';
 import 'package:milagro/models/productos.dart';
 import 'package:milagro/models/usuarios.dart';
 import 'package:milagro/pages/Login.dart';
 import 'package:milagro/pages/compras.dart';
 import 'package:milagro/pages/home_administrador.dart';
 import 'package:milagro/pages/registro.dart';
+import 'package:milagro/pages/registro_producto.dart';
+import 'package:milagro/pages/vendedor.dart';
 import 'package:milagro/services/auth_Services.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +38,9 @@ class _AppState extends State<App> {
         ChangeNotifierProvider(
           create: (_) => UsuarioProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => OrdenTempProvider(),
+        ),
       ],
       child: const MyApp(),
     );
@@ -62,6 +68,8 @@ class MyApp extends StatelessWidget {
           'login': (_) => const Login(),
           'registroUsuario': (_) => const Registro(),
           'compras': (_) => const Compras(),
+          'registroProducto': (_) => RegistroProducto(),
+          'vendedor': (_) => const Vendedor(),
         });
   }
 }

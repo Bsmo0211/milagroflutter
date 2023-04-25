@@ -20,7 +20,7 @@ class DrawerComprador extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 185,
+              height: 200,
               width: 500,
               child: DrawerHeader(
                 decoration: BoxDecoration(
@@ -30,9 +30,19 @@ class DrawerComprador extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 60, 10, 5),
+                      padding: const EdgeInsets.fromLTRB(10, 50, 10, 0),
                       child: Text(
                         '${usuario?.usuario!.primerNombre} ${usuario?.usuario!.primerApellido}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      child: Text(
+                        '${usuario?.usuario!.rol}',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 17,

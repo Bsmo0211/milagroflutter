@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:milagro/pages/Login.dart';
-import 'package:milagro/pages/agricultor.dart';
+import 'package:milagro/pages/vendedor.dart';
 import 'package:milagro/pages/compras.dart';
 import 'package:milagro/pages/home_administrador.dart';
 import 'package:milagro/pages/pantalla_carga.dart';

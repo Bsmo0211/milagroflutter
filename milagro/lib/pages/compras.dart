@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:milagro/items/drawer.dart';
 import 'package:milagro/models/productos.dart';
 import 'package:milagro/models/usuarios.dart';
+import 'package:milagro/widgets/carrito_compras.dart';
+import 'package:milagro/widgets/informacion_producto_detallada.dart';
 import 'package:provider/provider.dart';
 
 class Compras extends StatefulWidget {
@@ -25,6 +27,20 @@ class _ComprasState extends State<Compras> {
       drawer: DrawerComprador(usuario: user),
       appBar: AppBar(
         title: const Text('Comprador'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CarritoCompras()),
+              );
+            },
+            icon: const Icon(
+              Icons.shopping_cart,
+              size: 25,
+            ),
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -67,12 +83,21 @@ class _ComprasState extends State<Compras> {
               child: ListView.builder(
             itemCount: list.productos.length,
             itemBuilder: ((BuildContext context, index) {
-              final uno = list.productos[index];
+              Producto producto = list.productos[index];
 
               return Column(
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => InformacionProductoDetallada(
+                                  producto: producto,
+                                  usuario: usuario!,
+                                )),
+                      );
+                    },
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -82,13 +107,22 @@ class _ComprasState extends State<Compras> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ListTile(
-                            contentPadding:
-                                const EdgeInsets.fromLTRB(15, 10, 25, 0),
-                            title: Text(
-                              'Nombre Producto ${uno.nombreProducto} ',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                top: 15,
+                                bottom: 10,
+                              ),
+                              child: Image.network(
+                                producto.url,
+                                cacheHeight: 100,
+                                loadingBuilder:
+                                    (context, child, loadingProgress) {
+                                  if (loadingProgress == null) {
+                                    return child;
+                                  }
+                                  return const CircularProgressIndicator();
+                                },
                               ),
                             ),
                           ),
@@ -96,8 +130,33 @@ class _ComprasState extends State<Compras> {
                             height: 1,
                             color: Colors.grey,
                           ),
+                          ListTile(
+                            contentPadding:
+                                const EdgeInsets.fromLTRB(15, 0, 25, 0),
+                            title: Text.rich(
+                              TextSpan(
+                                children: [
+                                  const TextSpan(
+                                    text: 'Nombre Producto: ',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: '${producto.nombreProducto}',
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                           Container(
-                            padding: const EdgeInsets.fromLTRB(15, 15, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                             child: Text.rich(
                               TextSpan(
                                 children: [
@@ -119,9 +178,9 @@ class _ComprasState extends State<Compras> {
                                       fontSize: 16,
                                     ),
                                   ),
-                                  const TextSpan(
-                                    text: 'Numero x kg',
-                                    style: TextStyle(
+                                  TextSpan(
+                                    text: '${producto.precio} x kg',
+                                    style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
@@ -141,24 +200,26 @@ class _ComprasState extends State<Compras> {
                                       padding:
                                           const EdgeInsets.fromLTRB(0, 0, 5, 0),
                                       child: const Icon(
-                                        Icons.attach_money,
-                                        size: 14,
+                                        Icons.person,
+                                        size: 17,
                                         color: Colors.black,
                                       ),
                                     ),
                                   ),
                                   const TextSpan(
-                                    text: 'Destinación Económica: ',
+                                    text: 'Nombre vendedor: ',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 12,
+                                      fontSize: 15,
                                     ),
                                   ),
-                                  const TextSpan(
-                                    text: 'Sin información',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 12,
+                                  TextSpan(
+                                    text:
+                                        '${producto.nombreVendedor} ${producto.apellidoVendedor}',
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ],
@@ -176,16 +237,24 @@ class _ComprasState extends State<Compras> {
                                           const EdgeInsets.fromLTRB(0, 0, 5, 0),
                                       child: const Icon(
                                         Icons.abc,
-                                        size: 16,
+                                        size: 17,
                                         color: Colors.black,
                                       ),
                                     ),
                                   ),
                                   const TextSpan(
-                                    text: 'Nombre: ',
+                                    text: 'Cantidad disponible: ',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 12,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: '${producto.cantidad} Libras ',
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ],

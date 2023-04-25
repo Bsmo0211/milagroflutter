@@ -59,7 +59,11 @@ class DrawerVendedor extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      AuthServices().signOut();
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        'registroProducto',
+                        (route) => false,
+                      );
                     },
                   ),
                   const Divider(
