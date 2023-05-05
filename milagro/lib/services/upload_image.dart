@@ -19,8 +19,6 @@ class SubidaImagen {
 
     String url = await snapshot.ref.getDownloadURL();
 
-    print(url);
-
     if (snapshot.state == TaskState.success) {
       return {'success': true, 'url': url};
     } else {

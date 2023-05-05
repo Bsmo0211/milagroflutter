@@ -181,13 +181,16 @@ class _CarritoComprasState extends State<CarritoCompras> {
                   ),
                 ),
                 ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
                         builder: (BuildContext context) =>
                             const FinalizacionCompra(),
-                      ));
-                    },
-                    child: const Text('Comprar'))
+                      ),
+                    );
+                  },
+                  child: const Text('Comprar'),
+                ),
               ],
             ),
     );

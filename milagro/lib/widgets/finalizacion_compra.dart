@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:milagro/common/config.dart';
+import 'package:milagro/firebase/querys.dart';
 import 'package:milagro/models/ordenTemp.dart';
 import 'package:milagro/models/usuarios.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FinalizacionCompra extends StatefulWidget {
   const FinalizacionCompra({super.key});
@@ -11,6 +14,12 @@ class FinalizacionCompra extends StatefulWidget {
 }
 
 class _FinalizacionCompraState extends State<FinalizacionCompra> {
+  String url = "https://www.pse.com.co/persona";
+
+  redireccion() async {
+    await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+  }
+
   @override
   Widget build(BuildContext context) {
     OrdenTempProvider list = Provider.of<OrdenTempProvider>(context);
@@ -96,6 +105,47 @@ class _FinalizacionCompraState extends State<FinalizacionCompra> {
                         ],
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 15,
+                      ),
+                      child: Text(
+                        'Selecciona Método de pago!',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Config.green,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          await FireBaseQuery().addOrden(
+                            user.usuario!.direccion,
+                            'efectivo',
+                            total,
+                            '${user.usuario!.direccion}+ ${ordenTemp.productos.length}',
+                          );
+                        },
+                        child: const Text('Efectivo'),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          await FireBaseQuery().addOrden(
+                            user.usuario!.direccion,
+                            'pse',
+                            total,
+                            '${user.usuario!.direccion}+ ${ordenTemp.productos.length}',
+                          );
+                          await redireccion();
+                        },
+                        child: const Text('PSE'),
+                      ),
+                    )
                   ]),
                 );
               }).toList(),

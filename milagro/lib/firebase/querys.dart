@@ -56,16 +56,9 @@ class FireBaseQuery {
     String url,
     String uidUsuario,
   ) async {
-    /* await firebase.collection('ordenesTemp').doc(uidUsuario).set({
-      "nombreProducto": nombreProducto,
-      "precio": precio,
-      "cantidadProducto": cantidad,
-      "imagen": url,
-      "uidUsuario": uidUsuario,
-    }); */
     List<OrdenTemp> ordenes = await DB().getOrdenTemp();
     DateTime fecha = DateTime.now();
-    print(ordenes);
+
     List<Map<String, dynamic>> productos = [];
     if (ordenes.isNotEmpty) {
       OrdenTemp orden = ordenes.first;
@@ -87,6 +80,16 @@ class FireBaseQuery {
       "fecha": DateTime.now(),
       "productos": productos,
       "uidUsuario": uidUsuario,
+    });
+  }
+
+  addOrden(
+      String direccion, String metodoPago, int total, String idOrden) async {
+    await firebase.collection('ordenes').doc().set({
+      "direccion": direccion,
+      "metodoPago": metodoPago,
+      "idOrden": idOrden,
+      "total": total,
     });
   }
 }

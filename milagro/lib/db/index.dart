@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:milagro/models/orden.dart';
 import 'package:milagro/models/ordenTemp.dart';
 import 'package:milagro/models/productos.dart';
 import 'package:milagro/models/usuarios.dart';
@@ -65,6 +66,21 @@ class DB {
     final fet = (await model.get());
 
     for (QueryDocumentSnapshot<OrdenTemp> doc in fet.docs) {
+      list.add(doc.data());
+    }
+    return list;
+  }
+
+  Future<List<Orden>> getOrdenes() async {
+    List<Orden> list = [];
+
+    final model = (db.collection(collectionOrdenes).withConverter<Orden>(
+        fromFirestore: (snapshot, _) => Orden.fromJson(snapshot.data()!),
+        toFirestore: (Orden, _) => Orden.toJson()));
+
+    final fet = (await model.get());
+
+    for (QueryDocumentSnapshot<Orden> doc in fet.docs) {
       list.add(doc.data());
     }
     return list;

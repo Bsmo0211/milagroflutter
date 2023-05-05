@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:milagro/common/config.dart';
+import 'package:milagro/models/orden.dart';
 import 'package:milagro/models/ordenTemp.dart';
 import 'package:milagro/models/productos.dart';
 import 'package:milagro/models/usuarios.dart';
@@ -40,6 +41,9 @@ class _AppState extends State<App> {
         ),
         ChangeNotifierProvider(
           create: (_) => OrdenTempProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => OrdenProvider(),
         ),
       ],
       child: const MyApp(),

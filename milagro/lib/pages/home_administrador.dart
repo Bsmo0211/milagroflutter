@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
           ),
           Center(
             child: Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 top: 25,
               ),
               child: GestureDetector(

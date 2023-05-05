@@ -7,7 +7,6 @@ import 'package:milagro/db/index.dart';
 
 class ProductoProvider extends ChangeNotifier {
   ProductoProvider() {
-    print('empieza a cargar');
     cargarProductos();
   }
   List<Producto> productos = [];
