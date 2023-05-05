@@ -83,13 +83,23 @@ class FireBaseQuery {
     });
   }
 
-  addOrden(
-      String direccion, String metodoPago, int total, String idOrden) async {
-    await firebase.collection('ordenes').doc().set({
-      "direccion": direccion,
-      "metodoPago": metodoPago,
-      "idOrden": idOrden,
-      "total": total,
-    });
+  addOrden(String direccion, String metodoPago, int total, String idOrden,
+      String nombreCompleto) async {
+    await firebase.collection('ordenes').doc().set(
+      {
+        "direccion": direccion,
+        "metodoPago": metodoPago,
+        "idOrden": idOrden,
+        "total": total,
+        'nombreCompleto': nombreCompleto,
+      },
+    );
+  }
+
+  eliminarOrdenTemp(String usuarioId) async {
+    await FirebaseFirestore.instance
+        .collection('ordenesTemp')
+        .doc(usuarioId)
+        .delete();
   }
 }

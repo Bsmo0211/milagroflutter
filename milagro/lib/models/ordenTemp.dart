@@ -16,6 +16,7 @@ class OrdenTempProvider extends ChangeNotifier {
 class OrdenTemp {
   DateTime? fecha;
   List<ProductoOrdenTemp> productos = [];
+  String uidUsuario = '';
 
   OrdenTemp.fromJson(Map<String, dynamic> json) {
     if (json["fecha"].runtimeType == String) {
@@ -27,6 +28,8 @@ class OrdenTemp {
       productoTemp as Map<String, dynamic>;
       productos.add(ProductoOrdenTemp.fromJson(productoTemp));
     }
+
+    uidUsuario = json['uidUsuario'];
   }
 
   Map<String, dynamic> toJson() {
@@ -37,6 +40,7 @@ class OrdenTemp {
     }
     _data['productos'] = productosJson;
     _data['fecha'] = fecha;
+    _data['uidUsuario'] = uidUsuario;
 
     return _data;
   }

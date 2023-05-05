@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:milagro/common/config.dart';
 import 'package:milagro/firebase/querys.dart';
@@ -118,20 +119,46 @@ class _FinalizacionCompraState extends State<FinalizacionCompra> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.only(top: 15),
                       child: ElevatedButton(
                         onPressed: () async {
                           await FireBaseQuery().addOrden(
-                            user.usuario!.direccion,
-                            'efectivo',
-                            total,
-                            '${user.usuario!.direccion}+ ${ordenTemp.productos.length}',
-                          );
+                              user.usuario!.direccion,
+                              'efectivo',
+                              total,
+                              '${ordenTemp.uidUsuario} ${ordenTemp.productos.length}',
+                              '${user.usuario!.primerNombre} ${user.usuario!.primerApellido}');
+
+                          showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: ((BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Orden Recibida!'),
+                                  content: const Text(
+                                      'Su orden ya fue enviada al dueño del producto'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pushNamedAndRemoveUntil(
+                                          context,
+                                          'compras',
+                                          (route) => false,
+                                        );
+                                      },
+                                      child: const Text('Ok'),
+                                    )
+                                  ],
+                                );
+                              }));
+
+                          await FireBaseQuery()
+                              .eliminarOrdenTemp(ordenTemp.uidUsuario);
                         },
                         child: const Text('Efectivo'),
                       ),
                     ),
-                    Padding(
+                    /*  Padding(
                       padding: EdgeInsets.only(top: 15),
                       child: ElevatedButton(
                         onPressed: () async {
@@ -145,7 +172,7 @@ class _FinalizacionCompraState extends State<FinalizacionCompra> {
                         },
                         child: const Text('PSE'),
                       ),
-                    )
+                    ) */
                   ]),
                 );
               }).toList(),

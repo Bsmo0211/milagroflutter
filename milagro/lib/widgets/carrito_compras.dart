@@ -31,8 +31,7 @@ class _CarritoComprasState extends State<CarritoCompras> {
                     shrinkWrap: true,
                     itemCount: list.ordenTemp.length,
                     itemBuilder: ((context, index) {
-                      return Expanded(
-                          child: Column(
+                      return Column(
                         children: list.ordenTemp.map((ordenTemp) {
                           return Column(
                             children: ordenTemp.productos.map((producto) {
@@ -176,7 +175,7 @@ class _CarritoComprasState extends State<CarritoCompras> {
                             }).toList(),
                           );
                         }).toList(),
-                      ));
+                      );
                     }),
                   ),
                 ),
